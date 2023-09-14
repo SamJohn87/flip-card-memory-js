@@ -5,11 +5,11 @@ class Card {
     //Constructor used to define an object of the Card class
     constructor(setNumber, url) {
         this.setNumber = setNumber;
-        this.url = null;
+        this.url = url;
     }
     
     //This function return the Object's value of the property setNumber.
-    //Will be use to check if 2 cards are from the same set.
+    //Will be used to check if 2 cards are from the same set.
     setNumberValue() {
         return this.setNumber;
     }
