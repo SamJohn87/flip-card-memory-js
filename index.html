@@ -29,17 +29,23 @@
 </head>
 <body>
     <h1 class="text-center">Welcome to our Flip-Card Memory Game!</h1>
+    
+    <div>
+        <div>Timer: <label>0</label></div>
+        <div>Score: <label>0</label></div>
+        <div>Tries: <label>0</label></div>
+    </div>    
     <!-- Card display using CSS Flexbox layout -->
     <div class="flex-container">
         <div id="3" onclick="showCard(3)"></div>
         <div id="5" onclick="showCard(5)"></div>
         <div id="2" onclick="showCard(2)"></div>  
-      </div>
-      <div class="flex-container">
+    </div>
+    <div class="flex-container">
         <div id="4" onclick="showCard(4)"></div>
         <div id="1" onclick="showCard(1)"></div>
         <div id="0" onclick="showCard(0)"></div>  
-      </div>
+    </div>
 
      <!-- Calling JavaScript files --> 
     <script src="js/flip-card-memory-game.js"></script>
