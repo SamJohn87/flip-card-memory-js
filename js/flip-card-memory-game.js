@@ -43,11 +43,19 @@ CARDS.push(card6); // add card to library of cards
 //example of how to check a card setNumber.
 console.log(`Card 1 set is ${card1.setNumberValue()}.`);
 
+//Adding onclick events to each div card 
+for(i = 0; i < 6; i++) {
+    let elementID = document.getElementById(i).id;
+    document.getElementById(i).addEventListener('click', function () { showCard(elementID); });
+    console.log(elementID);
+}
+
 //function to display card's picture
 function showCard(id){
     //change div.style to show card's picture
     //display picture with the same array index than the id parameter
     //e.g div number 5 will show the picture of the card store at the index number 5 of the array cards
-    document.getElementById(id).style.backgroundImage = `url('${CARDS[id].url}')`;
-    document.getElementById(id).style.backgroundSize = 'cover';
+    let el = document.getElementById(id);
+    el.style.backgroundImage = `url('${CARDS[id].url}')`;
+    el.style.backgroundSize = 'cover';
 }
