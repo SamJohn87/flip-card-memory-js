@@ -89,7 +89,7 @@ function showCard(id){
         //delay the call to hideCards function by 1 second - 1000 millisecond
         setTimeout(() => {
             hideCards();
-        }, 500);
+        }, 1000);
     }
 }
 
