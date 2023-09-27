@@ -21,6 +21,9 @@ const CARD_SELECTED = []; //Array used to log player card picked
 const SETS_FOUND = []; //Array used to keep track of card set found by player
 const NUM_TRIES =[]; //Array used to keep track of player attempts
 const SCORE = 0; //Variable keeping track of player's score
+let timerInterval; //Every second it refreseshes time that has elapsed
+let startTime; //The time at which the timer starts
+let elapsedTime = 0; //Start elapsed time
 
 //first set of cards
 const card1 = new Card(1, "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
@@ -46,9 +49,31 @@ console.log(`Card 1 set is ${card1.setNumberValue()}.`);
 //Adding onclick events to each div card 
 for(i = 0; i < 6; i++) {
     let elementID = document.getElementById(i).id;
+    document.getElementById(i).addEventListener('click', function () { startStopwatch(); });
     document.getElementById(i).addEventListener('click', function () { showCard(elementID); });
     console.log(elementID);
 }
+
+//stopwatch functions
+function updateTimerDisplay() {
+	const timerElement = document.getElementById('timer');
+	const currentTime = new Date().getTime();
+	const timeDifference = new Date (currentTime - startTime + elapsedTime);
+	const minutes = timeDifference.getMinutes();
+	const seconds = timeDifference.getSeconds();
+    const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+	document.getElementById('timer').textContent = 'Stopwatch: ' + formattedTime;
+}
+
+//starts stopwatch
+function startStopwatch() {
+    if (!timerInterval) {
+        startTime = new Date().getTime();
+        timerInterval = setInterval(updateTimerDisplay, 1000);
+    }
+}
+//startStopwatch();
+
 
 //function to display card's picture
 function showCard(id){
@@ -57,5 +82,5 @@ function showCard(id){
     //e.g div number 5 will show the picture of the card store at the index number 5 of the array cards
     let el = document.getElementById(id);
     el.style.backgroundImage = `url('${CARDS[id].url}')`;
-    el.style.backgroundSize = 'cover';
+    el.style.backgroundSize = 'cover';  
 }
