@@ -21,6 +21,9 @@ let CARD_SELECTED = []; //Array used to log player card id picked
 const SETS_FOUND = []; //Array used to keep track of card set found by player
 const NUM_TRIES =[]; //Array used to keep track of player attempts
 const SCORE = 0; //Variable keeping track of player's score
+let timerInterval; //Every second it refreseshes time that has elapsed
+let startTime; //The time at which the timer starts
+let elapsedTime = 0; //Start elapsed time
 let showCardFunctionsArr = []; //Array to keep track of functions created by eventlistener
 let arrIdx = 0; //index of array to locate functions in showCardFunctionsArr array
 let idNumber = 0; //get the number portion of the card id (e.g card1 idNumber will be 1)
@@ -53,10 +56,32 @@ for(i = 1; i < 7; i++) {
     let element = document.querySelector(`#card${i}`);
     let elementID = element.id;
     let showCardFunction = () => showCard(elementID); 
+    element.addEventListener('click', function () { startStopwatch(); });
     //memorize function by adding it to array
     showCardFunctionsArr.push(showCardFunction); //even function is the same, considered different methods by javascript
     element.addEventListener('click', showCardFunction);
 }
+
+//stopwatch functions
+function updateTimerDisplay() {
+	const timerElement = document.getElementById('timer');
+	const currentTime = new Date().getTime();
+	const timeDifference = new Date (currentTime - startTime + elapsedTime);
+	const minutes = timeDifference.getMinutes();
+	const seconds = timeDifference.getSeconds();
+    const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+	document.getElementById('timer').textContent = 'Stopwatch: ' + formattedTime;
+}
+
+//starts stopwatch
+function startStopwatch() {
+    if (!timerInterval) {
+        startTime = new Date().getTime();
+        timerInterval = setInterval(updateTimerDisplay, 1000);
+    }
+}
+//startStopwatch();
+
 
 //function to display card's picture
 function showCard(id){
