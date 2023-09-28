@@ -70,7 +70,7 @@ function updateTimerDisplay() {
 	const minutes = timeDifference.getMinutes();
 	const seconds = timeDifference.getSeconds();
     const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-	document.getElementById('timer').textContent = 'Stopwatch: ' + formattedTime;
+	timerElement.textContent = 'Stopwatch: ' + formattedTime;
 }
 
 //starts stopwatch
