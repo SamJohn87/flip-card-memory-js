@@ -28,6 +28,7 @@ let showCardFunctionsArr = []; //Array to keep track of functions created by eve
 let arrIdx = 0; //index of array to locate functions in showCardFunctionsArr array
 let idNumber = 0; //get the number portion of the card id (e.g card1 idNumber will be 1)
 let theImgContainer; //container of the image receving the events from evenlistener
+let numTries = 0 //sets matched pairs at zero at the beginning
 
 //first set of cards
 const card1 = new Card(1, "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");
@@ -60,6 +61,7 @@ for(i = 1; i < 7; i++) {
     //memorize function by adding it to array
     showCardFunctionsArr.push(showCardFunction); //even function is the same, considered different methods by javascript
     element.addEventListener('click', showCardFunction);
+   
 }
 
 //stopwatch functions
@@ -110,11 +112,39 @@ function showCard(id){
     console.log(id); 
 
     //if 2 cards are selected, hide both cards 
-    if(CARD_SELECTED.length === 2) {
-        //delay the call to hideCards function by 1 second - 1000 millisecond
-        setTimeout(() => {
-            hideCards();
-        }, 1000);
+    if (CARD_SELECTED.length === 2) {
+        const [cardId1, cardId2] = CARD_SELECTED; // Get the IDs of the selected cards
+        console.log('cardId1', cardId1);
+        console.log('cardId2', cardId2);
+        const card1 = document.querySelector(`#${cardId1}`);
+        const card2 = document.querySelector(`#${cardId2}`);
+    
+        // Check if both cards are defined and have the dataset property
+        if (card1 && card2 && card1.dataset && card2.dataset) {
+            // Check if the 'card' property exists in the dataset
+            const card1Data = card1.dataset.card;
+            const card2Data = card2.dataset.card;
+
+    
+            if (card1Data && card2Data && card1Data === card2Data) {
+                // Cards match
+                card1.classList.add('hidden');
+                card2.classList.add('hidden');
+    
+            } else {
+                // Cards do not match
+                // Delay the call to hideCards function by 1 second - 1000 milliseconds
+                setTimeout(() => {
+                    hideCards();
+                }, 1000);
+            }
+        } else {
+            // Log an error or handle the case where cards are not properly defined
+            console.error("Error: One or both cards are not properly defined.");
+        }
+    
+        numTries++; // Increment the number of tries
+        document.querySelector('#increment').textContent = numTries; // Update the display with the number of tries
     }
 }
 
