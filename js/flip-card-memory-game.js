@@ -126,7 +126,7 @@ function showCard(id){
             const card2Data = card2.dataset.card;
 
     
-            if (card1Data && card2Data && card1Data === card2Data) {
+            if (card1.setNumber === card2.setNumber) {
                 // Cards match
                 card1.classList.add('hidden');
                 card2.classList.add('hidden');
