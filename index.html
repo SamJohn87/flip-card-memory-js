@@ -5,143 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip-Card Memory Game</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        .text-center {
-            text-align: center;
-        }
-
-        .flex-container {
-            display: flex;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }
-        
-       /*.flex-container > div {
-            margin: 10px;
-            padding: 20px;
-            width: 150px;
-            height: 200px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 3px solid #73AD21;
-        }*/
-
-        /*flip-card style*/
-        .flip-card {
-            background-color: transparent;
-            margin: 10px;
-            padding: 20px;
-            width: 150px;
-            height: 200px;
-            perspective: 1000px;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        }
-
-        .flipped-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-
-        .flip-card-front {
-            background-color: #520f40;
-            color: black;
-        }
-
-        .flip-card-back {
-            background-color: white;
-            color: white;
-            transform: rotateY(180deg);
-            background-size: cover;
-        }
-
-        img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1 class="text-center">Welcome to our Flip-Card Memory Game!</h1>
-   
-    <div>
-        <div id="timer">Stopwatch: 0:00</div>
-        <div>Score: <label>0</label></div>
-        <div id="increment">Tries: <label>0</label></div>
-    </div>  
-   
-    <!-- Card display using CSS Flexbox layout -->
-    <div class="flex-container">
-        <div class="flip-card">
-            <div id="card1" class="flip-card-inner">
-                <div class="flip-card-front">     
-                </div>
-                <div class="flip-card-back">
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div id="card4" class="flip-card-inner">
-                <div class="flip-card-front">     
-                </div>
-                <div class="flip-card-back">
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Flip-Card Memory Game!</h1>
+        <div class="game-container">
+            <div class="info-board">
+                <div class="row">
+                    <div class="col-4">
+                        <button class="btn-custom reset-button mb-3" onclick="document.location.reload()">Reset</button>
+                    </div>
+                    <div class="col-4">
+                        <div class="attempts-counter mb-3 label">Attempts: <br><span id="increment">0</span></div>
+                    </div>
+                    <div class="col-4">
+                        <div id="stopwatch" class="stopwatch mb-3 label">0:00</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="flip-card">
-            <div id="card6" class="flip-card-inner">
-                <div class="flip-card-front">     
+            <div class="cards-container">
+                <div class="flip-card">
+                    <div id="card1" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
                 </div>
-                <div class="flip-card-back">
+                <div class="flip-card">
+                    <div id="card4" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div id="card6" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div id="card5" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div id="card2" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div id="card3" class="flip-card-inner">
+                        <div class="flip-card-front">     
+                        </div>
+                        <div class="flip-card-back">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="flex-container">
-        <div class="flip-card">
-            <div id="card5" class="flip-card-inner">
-                <div class="flip-card-front">     
-                </div>
-                <div class="flip-card-back">
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div id="card2" class="flip-card-inner">
-                <div class="flip-card-front">     
-                </div>
-                <div class="flip-card-back">
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div id="card3" class="flip-card-inner">
-                <div class="flip-card-front">     
-                </div>
-                <div class="flip-card-back">
-                </div>
-            </div>
-        </div>  
+    
+    <div class="text-center p-3 mt-4" style="background-color: rgba(255, 255, 255, 0.4)"> © 2023 Copyright:
+        <a href="https://samjohn87.github.io/" target="_blank">Samantha Nisus-Johnson</a> & <a href="https://samjohn87.github.io/" target="_blank">Li Mattson</a>
     </div>
-
+    <footer>
+        <small>Photo by <a href="https://unsplash.com/photos/Dr8jO199ORY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">Kseniya Lapteva</a></small>
+      </footer>
+      
      <!-- Calling JavaScript files --> 
     <script src="js/flip-card-memory-game.js"></script>
 </body>
